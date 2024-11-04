@@ -23,6 +23,7 @@ class Menu:
             self.window.blit(source=self.surf, dest=self.rect)
             self.menu_text(50, "Mountain", C_ORANGE, ((WIN_WIDTH / 2), 70))
             self.menu_text(50, "Shooter", C_ORANGE, ((WIN_WIDTH / 2), 120))
+            self.draw_corner_text("Antonio M C Júnior. RU: 4534057", 20, C_WHITE)
 
             for i in range(len(MENU_OPTION)):
                 if i == menu_option:
@@ -54,4 +55,10 @@ class Menu:
         text_font: Font = pygame.font.SysFont(name="Lucida Sans Typewriter", size=text_size)
         text_surf: Surface = text_font.render(text, True, text_color).convert_alpha()
         text_rect: Rect = text_surf.get_rect(center=text_center_pos)
+        self.window.blit(source=text_surf, dest=text_rect)
+
+    def draw_corner_text(self, text: str, font_size: int, color: tuple):
+        font = pygame.font.SysFont("Lucida Sans Typewriter", font_size)
+        text_surf = font.render(text, True, color).convert_alpha()
+        text_rect = text_surf.get_rect(bottomleft=(10, self.window.get_height() - 10))
         self.window.blit(source=text_surf, dest=text_rect)
